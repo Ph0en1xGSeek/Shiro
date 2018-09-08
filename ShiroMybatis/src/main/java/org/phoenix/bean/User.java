@@ -1,8 +1,8 @@
 package org.phoenix.bean;
 
 public class User {
-    private Integer uid;
-    private String username;
+    private Integer id;
+    private String name;
 
     //不返回password
 //    @JsonIgnore
@@ -11,19 +11,19 @@ public class User {
 
 
     public Integer getId() {
-        return uid;
+        return id;
     }
 
     public void setId(Integer id){
-        this.uid = id;
+        this.id = id;
     }
 
     public String getUsername(){
-        return username;
+        return name;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.name = username;
     }
 
     public String getPassword() {
@@ -36,9 +36,9 @@ public class User {
 
     @Override
     public String toString(){
-        return "UserDao{" +
-                "id=" + uid +
-                ", username=" + username +
+        return "User{" +
+                "id=" + id +
+                ", username=" + name +
                 ", password=" + password +
                 "}";
     }

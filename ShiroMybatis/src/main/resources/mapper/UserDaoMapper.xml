@@ -7,19 +7,24 @@
         <result property="password" column="password"/>
     </resultMap>
 
+    <resultMap id="userRoleMap" type="org.phoenix.bean.User_Role">
+        <result property="userId" column="user_id"/>
+        <result property="roleId" column="role_id"/>
+    </resultMap>
+
     <sql id="queryCondition">
         <where>
             <if test="uid != null and uid != ''">
-                and uid = #{uid}
+                and id = #{id}
             </if>
             <if test="username != null and username != ''">
-                and username = #{username}
+                and name = #{name}
             </if>
             <if test="password != null and password != ''">
                 and password = #{password}
             </if>
             <if test="keywords != null and keywords != ''">
-                and username like CONCAT('%', #{keywords},'%')
+                and name like CONCAT('%', #{keywords},'%')
             </if>
         </where>
     </sql>
@@ -30,11 +35,11 @@
     </select>
 
     <select id="getById" parameterType="int" resultMap="userMap">
-        SELECT * FROM user WHERE uid =#{uid}
+        SELECT * FROM user WHERE id =#{id}
     </select>
 
     <select id="getByUserName" parameterType="String" resultMap="userMap">
-        SELECT * FROM user WHERE username =#{username}
+        SELECT * FROM user WHERE name =#{name}
     </select>
 
     <insert id="create" parameterType="org.phoenix.bean.User">
@@ -42,23 +47,27 @@
         <!--SELECT LAST_INSERT_ID()-->
         <!--</selectKey>-->
         INSERT INTO user(
-        username,
+        name,
         password
         )VALUES(
-        #{username},
+        #{name},
         #{password}
         )
     </insert>
 
     <update id="update" parameterType="org.phoenix.bean.User">
         UPDATE user SET
-        username = #{username},
+        name = #{name},
         password = #{password}
-        WHERE uid = #{uid}
+        WHERE id = #{id}
     </update>
 
     <delete id="delete" parameterType="int">
-        DELETE FROM user WHERE uid = #{uid}
+        DELETE FROM user WHERE id = #{uid}
     </delete>
+
+    <select id="getRoles" parameterType="int" resultMap="userRoleMap">
+        SELECT * FROM user_role WHERE USER_ID=#{id}
+    </select>
 
 </mapper>

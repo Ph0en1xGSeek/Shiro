@@ -1,6 +1,7 @@
 package org.phoenix.dao;
 
 import org.phoenix.bean.User;
+import org.phoenix.bean.User_Role;
 import org.springframework.dao.DataAccessException;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface UserDao {
     int update(User user);
     int delete(Integer id);
     User getByUserName(String userNmae);
+    List<User_Role> getRoles(Integer id);
 }

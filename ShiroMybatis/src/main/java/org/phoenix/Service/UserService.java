@@ -1,6 +1,7 @@
 package org.phoenix.Service;
 
 import org.phoenix.bean.User;
+import org.phoenix.bean.User_Role;
 import org.phoenix.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -38,5 +39,9 @@ public class UserService {
 
     public User getByUserName(String userName){
         return userDao.getByUserName(userName);
+    }
+
+    public List<User_Role> getRoles(Integer id){
+        return userDao.getRoles(id);
     }
 }
